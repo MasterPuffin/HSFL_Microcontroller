@@ -40,7 +40,7 @@ void loop() {
 
     // Check if enough variables to calculate the BPM are avaiable
     bool canCalculate = true;
-    for (int i = 0; i < beatsArrayLength - 1; i++) {
+    for (int i = 0; i < beatsArrayLength; i++) {
       if (lastBeatsArray[i] < 1) {
         canCalculate = false;
         break;
@@ -48,7 +48,7 @@ void loop() {
     }
 
     if (canCalculate) {
-      int val = 0;
+      float val = 0;
       for (int i = 0; i < beatsArrayLength; i++) {
         val += lastBeatsArray[i];
       }
