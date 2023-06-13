@@ -1,6 +1,12 @@
+#include <BluetoothSerial.h>
+
+BluetoothSerial SerialBT;
+
 void setup() {
   Serial.begin(115200);
   Serial.println("Setting up");
+
+  SerialBT.begin("Heart Rate Monitor");  //Bluetooth device name
 }
 
 const int threshHoldFinger = 2000;
@@ -18,6 +24,7 @@ void loop() {
   if (value < threshHoldFinger) {
     fingerDetected = false;
     Serial.println("Please place the finger on the sensor");
+    SerialBT.println("Please place the finger on the sensor");
   } else if (value > threshHoldFinger && value < threshHoldBeat) {
     fingerDetected = true;
   } else if (value > threshHoldBeat) {
@@ -54,10 +61,12 @@ void loop() {
       }
 
       val = (val / (beatsArrayLength - 1)) / 1000 * 60;
-      Serial.print("Current BPM: ");
-      Serial.println(val);
+      String bpm = "Current BPM: " + (String) val;
+      Serial.println(bpm);
+      SerialBT.println(bpm);
     } else {
       Serial.println("Waiting for enough data to calculate BPM");
+      SerialBT.println("Waiting for enough data to calculate BPM");
     }
   }
 }
