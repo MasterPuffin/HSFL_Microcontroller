@@ -1,13 +1,12 @@
-int analogPin = 13;  // potentiometer wiper (middle terminal) connected to analog pin 3
-                     // outside leads to ground and +5V
-int val = 0;         // variable to store the value read
+int analogPin = 13;
+int val = 0;
 
 void setup() {
-  Serial.begin(9600);  //  setup serial
+  Serial.begin(9600);
   Serial.println("Setting up");
 }
 
 void loop() {
-  val = analogRead(analogPin);  // read the input pin
-  Serial.println(val);          // debug value
+  val = analogRead(analogPin);
+  Serial.println(val);
 }

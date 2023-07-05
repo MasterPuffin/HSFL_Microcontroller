@@ -20,6 +20,7 @@ unsigned long lastBeatTime = 0;
 void loop() {
   delay(10);
   int value = fakeAnalogRead();
+  //Serial.println(value);
 
   if (value < threshHoldFinger) {
     fingerDetected = false;
